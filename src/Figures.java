@@ -1,15 +1,18 @@
+import javax.crypto.spec.PSource;
+
 public class Figures {
     Figures () { }
 
-    Figures (char FigColor, int FigNum, int FigPos) {
+    Figures (char FigColor, int FigNum, int FigPos, char FigChar) {
         this.FigColor = FigColor;
         this.FigNum = FigNum;
         this.FigPos = FigPos;
+        Name = FigChar;
     }
 
-    private char FigColor = 'W'; // Цвет фигуры
+    private char FigColor = 'W'; // Р¦РІРµС‚ С„РёРіСѓСЂС‹
     private int FigNum = 1;
-    private int FigPos; // Положение фигуры
+    private int FigPos; // РџРѕР»РѕР¶РµРЅРёРµ С„РёРіСѓСЂС‹
                     //    18 28 38 48 58 68 78 88
                     //    17 27 37 47 57 67 77 87
                     //    16 26 36 46 56 66 75 86
@@ -18,19 +21,19 @@ public class Figures {
                     //    13 23 33 43 53 63 73 83
                     //    12 22 32 42 52 62 72 82
                     //    11 21 31 41 51 61 71 81
-    private boolean FigStat = true; // Состояние фигуры. В игре - true, съедена - false
+    private boolean FigStat = true; // РЎРѕСЃС‚РѕСЏРЅРёРµ С„РёРіСѓСЂС‹. Р’ РёРіСЂРµ - true, СЃСЉРµРґРµРЅР° - false
 
-    public void setColor(char Color) { this.FigColor = FigColor; } // Задать цвет фигуры
-    public char getColor() { return FigColor; } // Получить цвет фигуры
+    public void setColor(char Color) { this.FigColor = FigColor; } // Р—Р°РґР°С‚СЊ С†РІРµС‚ С„РёРіСѓСЂС‹
+    public char getColor() { return FigColor; } // РџРѕР»СѓС‡РёС‚СЊ С†РІРµС‚ С„РёРіСѓСЂС‹
 
-    public void setFigNum(int FigNum) { this.FigNum = FigNum; } // Задать номер фигуры
-    public int getFigNum() { return FigNum; } // Получить номер фигуры
+    public void setFigNum(int FigNum) { this.FigNum = FigNum; } // Р—Р°РґР°С‚СЊ РЅРѕРјРµСЂ С„РёРіСѓСЂС‹
+    public int getFigNum() { return FigNum; } // РџРѕР»СѓС‡РёС‚СЊ РЅРѕРјРµСЂ С„РёРіСѓСЂС‹
 
-    public void setFigPos(int Pos) { this.FigPos = FigPos; } // Задать положение фигуры
-    public int getFigPos() { return FigPos; } // Получить положение фигуры
+    public void setFigPos(int Pos) { this.FigPos = FigPos; } // Р—Р°РґР°С‚СЊ РїРѕР»РѕР¶РµРЅРёРµ С„РёРіСѓСЂС‹
+    public int getFigPos() { return FigPos; } // РџРѕР»СѓС‡РёС‚СЊ РїРѕР»РѕР¶РµРЅРёРµ С„РёРіСѓСЂС‹
 
-    public void setFigStat(boolean FigStat) { this.FigStat = FigStat; } // Задать статус фигуры
-    public boolean getFigStat() { return FigStat; } // Получить статус фигуры
+    public void setFigStat(boolean FigStat) { this.FigStat = FigStat; } // Р—Р°РґР°С‚СЊ СЃС‚Р°С‚СѓСЃ С„РёРіСѓСЂС‹
+    public boolean getFigStat() { return FigStat; } // РџРѕР»СѓС‡РёС‚СЊ СЃС‚Р°С‚СѓСЃ С„РёРіСѓСЂС‹
 
     char Name = 'X';
     public char getName() { return this.Name; }
@@ -38,72 +41,72 @@ public class Figures {
 
 }
 
-// Король
+// РљРѕСЂРѕР»СЊ
 class King extends Figures {
 
-    King (char FigColor, int FigNum, int FigPos) {
-        super(FigColor, FigNum, FigPos);
+    King (char FigColor, int FigNum, int FigPos, char FigChar) {
+        super(FigColor, FigNum, FigPos, FigChar);
     }
-    char Name = 'K';
-    public char getName() { return 'K'; }
-}
-
-// Ферзь
-class Queen extends Figures {
-
-    Queen (char FigColor, int FigNum, int FigPos) {
-        super(FigColor, FigNum, FigPos);
-    }
-    char Name = 'Q';
+    char Color = getColor();
     public char getName() { return this.Name; }
 }
 
-// Ладья
+// Р¤РµСЂР·СЊ
+class Queen extends Figures {
+
+    Queen (char FigColor, int FigNum, int FigPos, char FigChar) {
+        super(FigColor, FigNum, FigPos, FigChar);
+    }
+    char Color = getColor();
+    public char getName() { return this.Name; }
+}
+
+// Р›Р°РґСЊСЏ
 class Rook extends Figures {
 
-    Rook (char FigColor, int FigNum, int FigPos) {
-        super(FigColor, FigNum, FigPos);
+    Rook (char FigColor, int FigNum, int FigPos, char FigChar) {
+        super(FigColor, FigNum, FigPos, FigChar);
     }
-    char Name = 'R';
-    public char getName() { return Name; }
+    char Color = getColor();
+    public char getName() { return this.Name; }
 }
 
-// Конь
+// РљРѕРЅСЊ
 class Knight extends Figures {
 
-    Knight (char FigColor, int FigNum, int FigPos) {
-        super(FigColor, FigNum, FigPos);
+    Knight (char FigColor, int FigNum, int FigPos, char FigChar) {
+        super(FigColor, FigNum, FigPos, FigChar);
     }
-    char Name = 'N';
-    public char getName() { return Name; }
+    char Color = getColor();
+    public char getName() { return this.Name; }
 }
 
-// Слон
+// РЎР»РѕРЅ
 class Bishop extends Figures {
 
-    Bishop (char FigColor, int FigNum, int FigPos) {
-        super(FigColor, FigNum, FigPos);
+    Bishop (char FigColor, int FigNum, int FigPos, char FigChar) {
+        super(FigColor, FigNum, FigPos, FigChar);
     }
-    char Name = 'B';
-    public char getName() { return Name; }
+    char Color = getColor();
+    public char getName() { return this.Name; }
 }
 
-// Пешка
+// РџРµС€РєР°
 class Pawn extends Figures {
 
-    Pawn (char FigColor, int FigNum, int FigPos) {
-        super(FigColor, FigNum, FigPos);
+    Pawn (char FigColor, int FigNum, int FigPos, char FigChar) {
+        super(FigColor, FigNum, FigPos, FigChar);
     }
-    char Name = 'P';
-    public char getName() { return Name; }
+    char Color = getColor();
+    public char getName() { return this.Name; }
 }
 
-// Пустое поле
+// РџСѓСЃС‚РѕРµ РїРѕР»Рµ
 class Blank extends Figures {
 
-    Blank(char FigColor, int FigNum, int FigPos) {
-        super(FigColor, FigNum, FigPos);
+    Blank(char FigColor, int FigNum, int FigPos, char FigChar) {
+        super(FigColor, FigNum, FigPos, FigChar);
     }
-    char Name = 'O';
+    // в›љ = 9946
     public char getName() { return Name; }
 }
