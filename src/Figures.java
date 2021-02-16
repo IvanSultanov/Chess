@@ -137,7 +137,19 @@ class Pawn extends Figures {
     public char getName() { return this.Name; }
 
     public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
-        Result = takeFig.getColor() == PlayerObj.getColor();
+        boolean Col, Xpos, StepW, StepB, FwdW, FwdB;
+        int X1 = takeFig.getFigPosX();
+        int X2 = putFig.getFigPosX();
+        int Y1 = takeFig.getFigPosY();
+        int Y2 = putFig.getFigPosY();
+        char C1 = takeFig.getColor();
+        char C2 = PlayerObj.getColor();
+
+        Col = C1 == C2;
+        Xpos = (X1 == X2);
+        StepW = ((C1 == 'W') & (0 < (Y1 - Y2)) & ( ( Math.abs(Y1 - Y2) < 2 ) ^ (Y1 == 7 & ((Y1 - Y2) == 2))));
+        StepB = ((C1 == 'B') & (0 > (Y1 - Y2)) & ( ( Math.abs(Y1 - Y2) < 2 ) ^ (Y1 == 2 & ((Y2 - Y1) == 2))));
+        Result = Col & Xpos & (StepW | StepB);
         return Result;
     }
 }

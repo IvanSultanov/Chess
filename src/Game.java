@@ -1,3 +1,5 @@
+import javax.crypto.spec.PSource;
+
 public class Game {
     private boolean[][] GameField = new boolean[8][8];
     public Figures[][] FigSet = new Figures[9][9];
@@ -12,7 +14,7 @@ public class Game {
         FigSet[1][7] = new Knight('B', 2, 1, 7,'♘');
         FigSet[1][8] = new Rook('B', 2, 1, 8,'♖');
 
-        for (int i = 0; i < 8; i++) FigSet[2][i + 1] = new Pawn('B', i, 2,21 + i, '♙');
+        for (int i = 0; i < 8; i++) FigSet[2][i + 1] = new Pawn('B', i+1, 2,1 + i, '♙');
 
         FigSet[8][8] = new Rook('W', 1, 8, 8, '♜');
         FigSet[8][7] = new Knight('W', 1, 8, 7,'♞');
@@ -23,7 +25,7 @@ public class Game {
         FigSet[8][2] = new Knight('W', 2, 8, 2,'♞');
         FigSet[8][1] = new Rook('W', 2, 8, 1,'♜');
 
-        for (int i = 0; i < 8; i++) FigSet[7][i + 1] = new Pawn('W', i, 7,71 + i, '♟');
+        for (int i = 0; i < 8; i++) FigSet[7][i + 1] = new Pawn('W', i, 7,1 + i, '♟');
         for (int i = 3; i <= 6; i++) for (int j = 1; j <= 8; j++) FigSet[i][j] = new Blank('O', 0, i, j,'⛚');
         }
 
@@ -68,4 +70,5 @@ public class Game {
                 else b = true;
             return b;
         }
+
     }
