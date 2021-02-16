@@ -18,9 +18,9 @@ public class GameMain {
                 if (Str.equals(Exit)) break Out;
             } while (Game.Action(Str, Player1)); // Пока не введете правильные координаты
             Game.DrawBoard();
-            System.out.println(Game.FigSet[7][1].getFigPosY());
-            System.out.println(Game.FigSet[7][1].getFigPosX());
-            System.out.println(Game.FigSet[7][1].getName());
+//            System.out.println(Game.FigSet[7][1].getFigPosY());
+//            System.out.println(Game.FigSet[7][1].getFigPosX());
+//            System.out.println(Game.FigSet[7][1].getName());
             // Ход игрока 2
             do {
                 System.out.print(Player2.getName() + " (" + Player2.getColor() + ") " + "Ходите (напр. a7a6, выход:\"q\"): ");
@@ -28,9 +28,9 @@ public class GameMain {
                 if (Str.equals(Exit)) break Out;
             } while (Game.Action(Str, Player2)); // Пока не введете правильные координаты
             Game.DrawBoard();
-            System.out.println(Game.FigSet[6][1].getFigPosY());
-            System.out.println(Game.FigSet[6][1].getFigPosX());
-            System.out.println(Game.FigSet[6][1].getName());
+//            System.out.println(Game.FigSet[6][1].getFigPosY());
+//            System.out.println(Game.FigSet[6][1].getFigPosX());
+//            System.out.println(Game.FigSet[6][1].getName());
         }
         System.out.println("Савсибо за игру!");
     }
