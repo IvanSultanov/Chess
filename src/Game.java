@@ -55,21 +55,21 @@ public class Game {
             System.out.print("\n" + "   ");
             ch = 'a';
             for (int s = 0; s < 8; s++) System.out.print((char) (ch + s) + "\u0381\u0381");
+            System.out.println("\n");
         }
         // Ходы
         public boolean Action (String Move, Players ob){
             boolean b = false;
             StringToInt Conv = new StringToInt();
-            Conv.Convert(Move);
             try {
+                Conv.Convert(Move);
                 if (ob.getColor() == FigSet[Conv.getY1()][Conv.getX1()].getColor()) {
                     Figures TempFig = FigSet[Conv.getY1()][Conv.getX1()]; // Временный объект для переносимой фигуры
                     FigSet[Conv.getY1()][Conv.getX1()] = new Blank('O', 0, 0, '⛚');
                     FigSet[Conv.getY2()][Conv.getX2()] = TempFig;
                 } else b = true;
             }
-            catch (java.lang.NullPointerException | java.lang.ArrayIndexOutOfBoundsException exc) {b = true;}
+            catch (java.lang.NullPointerException | java.lang.ArrayIndexOutOfBoundsException | java.lang.StringIndexOutOfBoundsException exc) {b = true;}
             return b;
         }
-
     }

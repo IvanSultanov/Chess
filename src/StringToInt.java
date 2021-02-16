@@ -1,11 +1,16 @@
 public class StringToInt {
 
-    private  int x1 = 10, y1 = 10, x2 = 10, y2 = 10;
+    private  int x1 = 1, y1 = 1, x2 = 1, y2 = 1;
     public void Convert (String Str) {
         String Sel1 = Str.substring(0, 1);
         String Sel2 = Str.substring(1, 2);
         String Sel3 = Str.substring(2, 3);
         String Sel4 = Str.substring(3, 4);
+        if (Str.length() < 4) {
+            System.out.println("Вы ввели неверные координаты");
+            throw new java.lang.NullPointerException();
+        }
+        else {
 
         switch (Sel1) {
             case "a" : x1 = 1; break;
@@ -61,7 +66,8 @@ public class StringToInt {
             default: {
                 System.out.println("Вы ввели неверные координаты");
                 return;
-            }
+            }}
+
         }
 
 //        System.out.println(x1);
