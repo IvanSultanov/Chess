@@ -37,6 +37,10 @@ public class Figures {
 
     char Name = 'X';
     public char getName() { return this.Name; }
+    Boolean Result = false;
+    public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
+        return Result;
+    }
 
 
 }
@@ -49,6 +53,12 @@ class King extends Figures {
     }
     char Color = getColor();
     public char getName() { return this.Name; }
+
+    public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
+        Boolean Result = false;
+        if (takeFig.getColor() == PlayerObj.getColor()) Result = true;
+        return Result;
+    }
 }
 
 // Ферзь
@@ -59,6 +69,12 @@ class Queen extends Figures {
     }
     char Color = getColor();
     public char getName() { return this.Name; }
+
+    public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
+        Boolean Result = false;
+        if (takeFig.getColor() == PlayerObj.getColor()) Result = true;
+        return Result;
+    }
 }
 
 // Ладья
@@ -69,6 +85,12 @@ class Rook extends Figures {
     }
     char Color = getColor();
     public char getName() { return this.Name; }
+
+    public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
+        Boolean Result = false;
+        if (takeFig.getColor() == PlayerObj.getColor()) Result = true;
+        return Result;
+    }
 }
 
 // Конь
@@ -79,6 +101,12 @@ class Knight extends Figures {
     }
     char Color = getColor();
     public char getName() { return this.Name; }
+
+    public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
+        Boolean Result = false;
+        if (takeFig.getColor() == PlayerObj.getColor()) Result = true;
+        return Result;
+    }
 }
 
 // Слон
@@ -89,6 +117,12 @@ class Bishop extends Figures {
     }
     char Color = getColor();
     public char getName() { return this.Name; }
+
+    public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
+        Boolean Result = false;
+        if (takeFig.getColor() == PlayerObj.getColor()) Result = true;
+        return Result;
+    }
 }
 
 // Пешка
@@ -99,6 +133,13 @@ class Pawn extends Figures {
     }
     char Color = getColor();
     public char getName() { return this.Name; }
+
+    public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
+        Boolean Result = false;
+        if (takeFig.getColor() == PlayerObj.getColor()) Result = true;
+        return Result;
+    }
+
 }
 
 // Пустое поле

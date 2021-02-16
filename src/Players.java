@@ -9,6 +9,4 @@ public class Players {
         this.Name = Name;
         this.Color = Color;
     }
-
-
 }

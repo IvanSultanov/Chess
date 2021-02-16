@@ -61,17 +61,19 @@ public class Game {
         public boolean Action (String Move, Players Plob){
             boolean b = false;
             StringToInt Conv = new StringToInt();
-                if (Conv.Convert(Move))
-                    if ((Plob.getColor() == FigSet[Conv.getY1()][Conv.getX1()].getColor())) {
-                    Figures TempFig = FigSet[Conv.getY1()][Conv.getX1()]; // Временный объект для переносимой фигуры
-                    FigSet[Conv.getY1()][Conv.getX1()] = new Blank('O', 0, 0, '⛚');
-                    FigSet[Conv.getY2()][Conv.getX2()] = TempFig;
-                    }
-                    else {
+                if (Conv.Convert(Move)) {
+                    Figures TempFig1 = FigSet[Conv.getY1()][Conv.getX1()]; // Временный объект для переносимой фигуры
+                    Figures TempFig2 = FigSet[Conv.getY2()][Conv.getX2()];
+                    if (TempFig1.Movement(TempFig1, TempFig2, Plob)) {
+                        FigSet[Conv.getY1()][Conv.getX1()] = new Blank('O', 0, 0, '⛚');
+                        FigSet[Conv.getY2()][Conv.getX2()] = TempFig1;
+                    } else {
                         b = true;
                         System.out.println("Играйте своими фигурами!");
                     }
+                }
                 else b = true;
             return b;
         }
     }
+    //(Plob.getColor() == FigSet[Conv.getY1()][Conv.getX1()].getColor())
