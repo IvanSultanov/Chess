@@ -1,6 +1,6 @@
 public class StringToInt {
 
-    private  int x1, y1, x2, y2;
+    private  int x1 = 10, y1 = 10, x2 = 10, y2 = 10;
     public void Convert (String Str) {
         String Sel1 = Str.substring(0, 1);
         String Sel2 = Str.substring(1, 2);

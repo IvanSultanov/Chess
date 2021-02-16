@@ -61,11 +61,14 @@ public class Game {
             boolean b = false;
             StringToInt Conv = new StringToInt();
             Conv.Convert(Move);
-            if (ob.getColor() == FigSet[Conv.getY1()][Conv.getX1()].getColor()) {
-                Figures TempFig = FigSet[Conv.getY1()][Conv.getX1()]; // Временный объект для переносимой фигуры
-                FigSet[Conv.getY1()][Conv.getX1()] = new Blank('O', 0, 0, '⛚');
-                FigSet[Conv.getY2()][Conv.getX2()] = TempFig;
-            } else  b = true;
+            try {
+                if (ob.getColor() == FigSet[Conv.getY1()][Conv.getX1()].getColor()) {
+                    Figures TempFig = FigSet[Conv.getY1()][Conv.getX1()]; // Временный объект для переносимой фигуры
+                    FigSet[Conv.getY1()][Conv.getX1()] = new Blank('O', 0, 0, '⛚');
+                    FigSet[Conv.getY2()][Conv.getX2()] = TempFig;
+                } else b = true;
+            }
+            catch (java.lang.NullPointerException | java.lang.ArrayIndexOutOfBoundsException exc) {b = true;}
             return b;
         }
 
