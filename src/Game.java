@@ -67,7 +67,10 @@ public class Game {
                     FigSet[Conv.getY1()][Conv.getX1()] = new Blank('O', 0, 0, '⛚');
                     FigSet[Conv.getY2()][Conv.getX2()] = TempFig;
                     }
-                    else b = true;
+                    else {
+                        b = true;
+                        System.out.println("Играйте своими фигурами!");
+                    }
                 else b = true;
             return b;
         }
