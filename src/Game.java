@@ -56,12 +56,17 @@ public class Game {
             ch = 'a';
             for (int s = 0; s < 8; s++) System.out.print((char) (ch + s) + "\u0381\u0381");
         }
-
-        public void Action (String Move){
+        // Ходы
+        public boolean Action (String Move, Players ob){
+            boolean b = false;
             StringToInt Conv = new StringToInt();
             Conv.Convert(Move);
-            Figures TempFig = FigSet[Conv.getY1()][Conv.getX1()]; // Временный объект для переносимой фигуры
-            FigSet[Conv.getY1()][Conv.getX1()] = new Blank('O', 0, 0, '⛚');
-            FigSet[Conv.getY2()][Conv.getX2()] = TempFig;
+            if (ob.getColor() == FigSet[Conv.getY1()][Conv.getX1()].getColor()) {
+                Figures TempFig = FigSet[Conv.getY1()][Conv.getX1()]; // Временный объект для переносимой фигуры
+                FigSet[Conv.getY1()][Conv.getX1()] = new Blank('O', 0, 0, '⛚');
+                FigSet[Conv.getY2()][Conv.getX2()] = TempFig;
+            } else  b = true;
+            return b;
         }
+
     }

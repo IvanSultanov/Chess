@@ -1,6 +1,7 @@
 public class Players {
     private String Name;
     private char Color;
+    StringToInt Conv = new StringToInt();
     public String getName() { return Name; }
     public char getColor() { return Color; }
 
@@ -8,4 +9,6 @@ public class Players {
         this.Name = Name;
         this.Color = Color;
     }
+
+
 }
