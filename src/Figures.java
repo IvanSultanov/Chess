@@ -3,16 +3,20 @@ import javax.crypto.spec.PSource;
 public class Figures {
     Figures () { }
 
-    Figures (char FigColor, int FigNum, int FigPos, char FigChar) {
+    Figures (char FigColor, int FigNum, int FigPosY, int FigPosX, char FigChar) {
         this.FigColor = FigColor;
         this.FigNum = FigNum;
-        this.FigPos = FigPos;
+        this.FigPosY = FigPosY;
+        this.FigPosX = FigPosX;
         Name = FigChar;
     }
 
     private char FigColor = 'W'; // Цвет фигуры
     private int FigNum = 1;
-    private int FigPos; // Положение фигуры
+    private int FigPosY;
+    private int FigPosX;
+
+                    // Положение фигуры
                     //    18 28 38 48 58 68 78 88
                     //    17 27 37 47 57 67 77 87
                     //    16 26 36 46 56 66 75 86
@@ -23,21 +27,24 @@ public class Figures {
                     //    11 21 31 41 51 61 71 81
     private boolean FigStat = true; // Состояние фигуры. В игре - true, съедена - false
 
-    public void setColor(char Color) { this.FigColor = FigColor; } // Задать цвет фигуры
+    public void setColor(char Color) { this.FigColor = Color; } // Задать цвет фигуры
     public char getColor() { return FigColor; } // Получить цвет фигуры
 
     public void setFigNum(int FigNum) { this.FigNum = FigNum; } // Задать номер фигуры
     public int getFigNum() { return FigNum; } // Получить номер фигуры
 
-    public void setFigPos(int Pos) { this.FigPos = FigPos; } // Задать положение фигуры
-    public int getFigPos() { return FigPos; } // Получить положение фигуры
+    public void setFigPosY(int PosY) { this.FigPosY = PosY; } // Задать положение Y фигуры
+    public int getFigPosY() { return FigPosY; } // Получить положение Y фигуры
+
+    public void setFigPosX(int PosX) { this.FigPosX = PosX; } // Задать положение Y фигуры
+    public int getFigPosX() { return FigPosX; } // Получить положение Y фигуры
 
     public void setFigStat(boolean FigStat) { this.FigStat = FigStat; } // Задать статус фигуры
     public boolean getFigStat() { return FigStat; } // Получить статус фигуры
 
     char Name = 'X';
     public char getName() { return this.Name; }
-    Boolean Result = false;
+    boolean Result = false;
     public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
         return Result;
     }
@@ -48,15 +55,14 @@ public class Figures {
 // Король
 class King extends Figures {
 
-    King (char FigColor, int FigNum, int FigPos, char FigChar) {
-        super(FigColor, FigNum, FigPos, FigChar);
+    King (char FigColor, int FigNum, int FigPosY, int FigPosX, char FigChar) {
+        super(FigColor, FigNum, FigPosY, FigPosX, FigChar);
     }
     char Color = getColor();
     public char getName() { return this.Name; }
 
     public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
-        Boolean Result = false;
-        if (takeFig.getColor() == PlayerObj.getColor()) Result = true;
+        Result = takeFig.getColor() == PlayerObj.getColor();
         return Result;
     }
 }
@@ -64,15 +70,14 @@ class King extends Figures {
 // Ферзь
 class Queen extends Figures {
 
-    Queen (char FigColor, int FigNum, int FigPos, char FigChar) {
-        super(FigColor, FigNum, FigPos, FigChar);
+    Queen (char FigColor, int FigNum, int FigPosY, int FigPosX, char FigChar) {
+        super(FigColor, FigNum, FigPosY, FigPosX, FigChar);
     }
     char Color = getColor();
     public char getName() { return this.Name; }
 
     public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
-        Boolean Result = false;
-        if (takeFig.getColor() == PlayerObj.getColor()) Result = true;
+        Result = takeFig.getColor() == PlayerObj.getColor();
         return Result;
     }
 }
@@ -80,15 +85,14 @@ class Queen extends Figures {
 // Ладья
 class Rook extends Figures {
 
-    Rook (char FigColor, int FigNum, int FigPos, char FigChar) {
-        super(FigColor, FigNum, FigPos, FigChar);
+    Rook (char FigColor, int FigNum, int FigPosY, int FigPosX, char FigChar) {
+        super(FigColor, FigNum, FigPosY, FigPosX, FigChar);
     }
     char Color = getColor();
     public char getName() { return this.Name; }
 
     public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
-        Boolean Result = false;
-        if (takeFig.getColor() == PlayerObj.getColor()) Result = true;
+        Result = takeFig.getColor() == PlayerObj.getColor();
         return Result;
     }
 }
@@ -96,15 +100,14 @@ class Rook extends Figures {
 // Конь
 class Knight extends Figures {
 
-    Knight (char FigColor, int FigNum, int FigPos, char FigChar) {
-        super(FigColor, FigNum, FigPos, FigChar);
+    Knight (char FigColor, int FigNum, int FigPosY, int FigPosX, char FigChar) {
+        super(FigColor, FigNum, FigPosY, FigPosX, FigChar);
     }
     char Color = getColor();
     public char getName() { return this.Name; }
 
     public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
-        Boolean Result = false;
-        if (takeFig.getColor() == PlayerObj.getColor()) Result = true;
+        Result = takeFig.getColor() == PlayerObj.getColor();
         return Result;
     }
 }
@@ -112,15 +115,14 @@ class Knight extends Figures {
 // Слон
 class Bishop extends Figures {
 
-    Bishop (char FigColor, int FigNum, int FigPos, char FigChar) {
-        super(FigColor, FigNum, FigPos, FigChar);
+    Bishop (char FigColor, int FigNum, int FigPosY, int FigPosX, char FigChar) {
+        super(FigColor, FigNum, FigPosY, FigPosX, FigChar);
     }
     char Color = getColor();
     public char getName() { return this.Name; }
 
     public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
-        Boolean Result = false;
-        if (takeFig.getColor() == PlayerObj.getColor()) Result = true;
+        Result = takeFig.getColor() == PlayerObj.getColor();
         return Result;
     }
 }
@@ -128,25 +130,23 @@ class Bishop extends Figures {
 // Пешка
 class Pawn extends Figures {
 
-    Pawn (char FigColor, int FigNum, int FigPos, char FigChar) {
-        super(FigColor, FigNum, FigPos, FigChar);
+    Pawn (char FigColor, int FigNum, int FigPosY, int FigPosX, char FigChar) {
+        super(FigColor, FigNum, FigPosY, FigPosX, FigChar);
     }
     char Color = getColor();
     public char getName() { return this.Name; }
 
     public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
-        Boolean Result = false;
-        if (takeFig.getColor() == PlayerObj.getColor()) Result = true;
+        Result = takeFig.getColor() == PlayerObj.getColor();
         return Result;
     }
-
 }
 
 // Пустое поле
 class Blank extends Figures {
 
-    Blank(char FigColor, int FigNum, int FigPos, char FigChar) {
-        super(FigColor, FigNum, FigPos, FigChar);
+    Blank(char FigColor, int FigNum, int FigPosY, int FigPosX, char FigChar) {
+        super(FigColor, FigNum, FigPosY, FigPosX, FigChar);
     }
     // ⛚ = 9946
     public char getName() { return Name; }

@@ -1,7 +1,6 @@
 import java.util.Scanner;
 public class GameMain {
     public static void main(String[] args) {
-        char MoveFlag = 'X';
         String Str;
         String Exit = "q";
         Scanner in = new Scanner(System.in);
@@ -17,7 +16,6 @@ public class GameMain {
                 Str = in.next();
                 if (Str.equals(Exit)) break Out;
             } while (Game.Action(Str, Player1)); // Пока не введете правильные координаты
-            Game.Action(Str, Player1);
             Game.DrawBoard();
             // Ход игрока 2
             do {
@@ -25,7 +23,6 @@ public class GameMain {
                 Str = in.next();
                 if (Str.equals(Exit)) break Out;
             } while (Game.Action(Str, Player2)); // Пока не введете правильные координаты
-            Game.Action(Str, Player2);
             Game.DrawBoard();
         }
         System.out.println("Савсибо за игру!");

@@ -21,7 +21,7 @@ public class StringToInt {
             case "e" : x1 = 5; break;
             case "f" : x1 = 6; break;
             case "g" : x1 = 7; break;
-            case "j" : x1 = 8; break;
+            case "h" : x1 = 8; break;
             default: {
                 System.out.println("Вы ввели неверные координаты! Вы что, тупой?");
                 return val;
@@ -49,7 +49,7 @@ public class StringToInt {
             case "e" : x2 = 5; break;
             case "f" : x2 = 6; break;
             case "g" : x2 = 7; break;
-            case "j" : x2 = 8; break;
+            case "h" : x2 = 8; break;
             default: {
                 System.out.println("Вы ввели неверные координаты! Да, игрок Вы некудышный...");
                 return val;
