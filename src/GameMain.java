@@ -16,7 +16,7 @@ public class GameMain {
                 System.out.print(Player1.getName() + " (" + Player1.getColor() + ") " + "Ходите (напр. a2a3, выход:\"q\"): ");
                 Str = in.next();
                 if (Str.equals(Exit)) break Out;
-            } while (Game.Action(Str, Player1));
+            } while (Game.Action(Str, Player1)); // Пока не введете правильные координаты
             Game.Action(Str, Player1);
             Game.DrawBoard();
             // Ход игрока 2
@@ -24,7 +24,7 @@ public class GameMain {
                 System.out.print(Player2.getName() + " (" + Player2.getColor() + ") " + "Ходите (напр. a2a3, выход:\"q\"): ");
                 Str = in.next();
                 if (Str.equals(Exit)) break Out;
-            } while (Game.Action(Str, Player2));
+            } while (Game.Action(Str, Player2)); // Пока не введете правильные координаты
             Game.Action(Str, Player2);
             Game.DrawBoard();
         }

@@ -1,16 +1,17 @@
 public class StringToInt {
 
     private  int x1 = 1, y1 = 1, x2 = 1, y2 = 1;
-    public void Convert (String Str) {
-        String Sel1 = Str.substring(0, 1);
-        String Sel2 = Str.substring(1, 2);
-        String Sel3 = Str.substring(2, 3);
-        String Sel4 = Str.substring(3, 4);
+    public boolean Convert (String Str) {
+        boolean val = false;
         if (Str.length() < 4) {
-            System.out.println("Вы ввели неверные координаты");
-            throw new java.lang.NullPointerException();
+            System.out.println("Вы ввели неверные координаты! Откройте глаза!");
+            return val;
         }
         else {
+            String Sel1 = Str.substring(0, 1);
+            String Sel2 = Str.substring(1, 2);
+            String Sel3 = Str.substring(2, 3);
+            String Sel4 = Str.substring(3, 4);
 
         switch (Sel1) {
             case "a" : x1 = 1; break;
@@ -22,8 +23,8 @@ public class StringToInt {
             case "g" : x1 = 7; break;
             case "j" : x1 = 8; break;
             default: {
-                System.out.println("Вы ввели неверные координаты");
-                return;
+                System.out.println("Вы ввели неверные координаты! Вы что, тупой?");
+                return val;
             }
         }
         switch (Sel2) {
@@ -36,8 +37,8 @@ public class StringToInt {
             case "7" : y1 = 2; break;
             case "8" : y1 = 1; break;
             default: {
-                System.out.println("Вы ввели неверные координаты");
-                return;
+                System.out.println("Вы ввели неверные координаты! Ну Вы и дебил...");
+                return val;
             }
         }
         switch (Sel3) {
@@ -50,8 +51,8 @@ public class StringToInt {
             case "g" : x2 = 7; break;
             case "j" : x2 = 8; break;
             default: {
-                System.out.println("Вы ввели неверные координаты");
-                return;
+                System.out.println("Вы ввели неверные координаты! Да, игрок Вы некудышный...");
+                return val;
             }
         }
         switch (Sel4) {
@@ -64,19 +65,19 @@ public class StringToInt {
             case "7" : y2 = 2; break;
             case "8" : y2 = 1; break;
             default: {
-                System.out.println("Вы ввели неверные координаты");
-                return;
-            }}
+                System.out.println("Вы ввели неверные координаты! Вы вообще знаете, эту игру?");
+                return val;
+            }
 
+        } return true;
         }
 
 //        System.out.println(x1);
 //        System.out.println(y1);
 //        System.out.println(x2);
 //        System.out.println(y2);
-
-
     }
+
     public int getX1() { return x1;}
     public int getY1() { return y1;}
     public int getX2() { return x2;}

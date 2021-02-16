@@ -58,18 +58,17 @@ public class Game {
             System.out.println("\n");
         }
         // Ходы
-        public boolean Action (String Move, Players ob){
+        public boolean Action (String Move, Players Plob){
             boolean b = false;
             StringToInt Conv = new StringToInt();
-            try {
-                Conv.Convert(Move);
-                if (ob.getColor() == FigSet[Conv.getY1()][Conv.getX1()].getColor()) {
+                if (Conv.Convert(Move))
+                    if ((Plob.getColor() == FigSet[Conv.getY1()][Conv.getX1()].getColor())) {
                     Figures TempFig = FigSet[Conv.getY1()][Conv.getX1()]; // Временный объект для переносимой фигуры
                     FigSet[Conv.getY1()][Conv.getX1()] = new Blank('O', 0, 0, '⛚');
                     FigSet[Conv.getY2()][Conv.getX2()] = TempFig;
-                } else b = true;
-            }
-            catch (java.lang.NullPointerException | java.lang.ArrayIndexOutOfBoundsException | java.lang.StringIndexOutOfBoundsException exc) {b = true;}
+                    }
+                    else b = true;
+                else b = true;
             return b;
         }
     }
