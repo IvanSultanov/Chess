@@ -21,7 +21,7 @@ public class GameMain {
             Game.DrawBoard();
             // Ход игрока 2
             do {
-                System.out.print(Player2.getName() + " (" + Player2.getColor() + ") " + "Ходите (напр. a2a3, выход:\"q\"): ");
+                System.out.print(Player2.getName() + " (" + Player2.getColor() + ") " + "Ходите (напр. a7a6, выход:\"q\"): ");
                 Str = in.next();
                 if (Str.equals(Exit)) break Out;
             } while (Game.Action(Str, Player2)); // Пока не введете правильные координаты
