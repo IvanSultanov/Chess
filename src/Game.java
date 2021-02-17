@@ -100,19 +100,6 @@ public class Game {
             else return false;
         }
 
-        if (pawn) {
-            int Dist = Math.max(Y, X);
-            int a = 1, b = 1;
-            if ((Y2 - Y1) == 0) a = 0;
-            if ((X2 - X1) == 0) b = 0;
-            if ((Y2 - Y1) < 0) a *= -1;
-            if ((X2 - X1) < 0) b *= -1;
-            for (int i = 1; i < Dist; i++ )
-            Sum += FigSet[Y1+i*a][X1+i*b].getFigNum();
-            Result = (Sum == 0);
-            return Result;
-        }
-
         if (bishop) {
             if (Y == X) {
                 int Dist = Y;
@@ -141,6 +128,19 @@ public class Game {
                 Result = (Sum == 0);
                 return Result;
             } else return false;
+        }
+
+        if (pawn) {
+            int Dist = Math.max(Y, X);
+            int a = 1, b = 1;
+            if ((Y2 - Y1) == 0) a = 0;
+            if ((X2 - X1) == 0) b = 0;
+            if ((Y2 - Y1) < 0) a *= -1;
+            if ((X2 - X1) < 0) b *= -1;
+            for (int i = 1; i < Dist; i++ )
+                Sum += FigSet[Y1+i*a][X1+i*b].getFigNum();
+            Result = (Sum == 0);
+            return Result;
         }
 
 //        // Проверка есть ли фигура на пути (кроме коня)
