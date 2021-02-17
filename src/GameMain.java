@@ -32,6 +32,6 @@ public class GameMain {
 //            System.out.println(Game.FigSet[6][1].getFigPosX());
 //            System.out.println(Game.FigSet[6][1].getName());
         }
-        System.out.println("Савсибо за игру!");
+        System.out.println("Спасибо за игру!");
     }
 }

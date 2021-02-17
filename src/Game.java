@@ -50,6 +50,7 @@ public class Game {
             for (int s = 0; s < 8; s++) System.out.print((char) (ch + s) + "\u0381\u0381");
             System.out.println("\n");
         }
+
         // Ходы
         public boolean Action (String Move, Players Plob){
             boolean b = false;
@@ -57,7 +58,7 @@ public class Game {
                 if (Conv.Convert(Move)) {
                     Figures TempFig1 = FigSet[Conv.getY1()][Conv.getX1()]; // Временный объект для переносимой фигуры
                     Figures TempFig2 = FigSet[Conv.getY2()][Conv.getX2()];
-                    if (TempFig1.Movement(TempFig1, TempFig2, Plob)) {
+                    if (MovAllow(TempFig1, TempFig2, Plob)) {
                         FigSet[Conv.getY1()][Conv.getX1()] = new Blank('O', 0, Conv.getY1(), Conv.getX1(), '⛚');
                         FigSet[Conv.getY2()][Conv.getX2()] = TempFig1;
                         FigSet[Conv.getY2()][Conv.getX2()].setFigPosY(Conv.getY2());
@@ -71,9 +72,61 @@ public class Game {
             return b;
         }
 
-        public Figures Fig(int Y, int X) {
-        Figures Fig = FigSet[Y][X];
-        return Fig;
+    public boolean MovAllow (Figures takeFig, Figures putFig, Players PlayerObj) {
+        boolean Result = true, Col, Xpos, StepW, StepB, Obst, FwdB;
+        int X1 = takeFig.getFigPosX();
+        int X2 = putFig.getFigPosX();
+        int Y1 = takeFig.getFigPosY();
+        int Y2 = putFig.getFigPosY();
+        int Num = putFig.getFigNum();
+        int Sum = 0;
+        char C1 = takeFig.getColor();
+        char C2 = PlayerObj.getColor();
+        Col = C1 == C2;
+        int Y = Math.abs(Y2 - Y1);
+        int X = Math.abs(X2 - X1);
+        boolean knight = takeFig.getName() == ('♞' | '♘');
+        boolean bishop = (int) takeFig.getName() == (9815 | 9821);
+        boolean Rook = takeFig.getName() == ('♜' | '♖');
+
+        if ( Y == 0 & X == 0) return false;
+        if (Y > 0 & X > 0 & Y != X & !knight) return false;
+
+        // Проверка ходов коня
+        if (knight) {
+            if ((Y == 1 & X == 2) ^ (Y == 2 & X == 1))
+            return true;
+            else return false;
         }
 
+        if (takeFig.getName() == (9815 | 9821)) {
+            System.out.println((int) takeFig.getName());
+            System.out.println((char) 9815 + " " + (char) 9821);
+            if (Y == X) {
+                int Dist = Y;
+                int a = 1, b = 1;
+                if ((Y2 - Y1) == 0) a = 0;
+                if ((X2 - X1) == 0) b = 0;
+                if ((Y2 - Y1) < 0) a *= -1;
+                if ((X2 - X1) < 0) b *= -1;
+                for (int i = 1; i < Dist; i++)
+                    Sum += FigSet[Y1 + i * a][X1 + i * b].getFigNum();
+                Result = (Sum == 0);
+                return Result;
+            } else return false;
+        }
+        System.out.println(takeFig.getName());
+
+        // Проверка есть ли фигура на пути (кроме коня)
+        int Dist = Math.max(Y, X);
+        int a = 1, b = 1;
+        if ((Y2 - Y1) == 0) a = 0;
+        if ((X2 - X1) == 0) b = 0;
+        if ((Y2 - Y1) < 0) a *= -1;
+        if ((X2 - X1) < 0) b *= -1;
+        for (int i = 1; i < Dist; i++ )
+            Sum += FigSet[Y1+i*a][X1+i*b].getFigNum();
+            Result = (Sum == 0);
+            return Result;
     }
+}

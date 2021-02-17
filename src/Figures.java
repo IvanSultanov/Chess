@@ -1,5 +1,3 @@
-import javax.crypto.spec.PSource;
-
 public class Figures {
     Figures () { }
 
@@ -8,13 +6,14 @@ public class Figures {
         this.FigNum = FigNum;
         this.FigPosY = FigPosY;
         this.FigPosX = FigPosX;
-        Name = FigChar;
+        this.Name = FigChar;
     }
 
     private char FigColor = 'W'; // Цвет фигуры
     private int FigNum = 1;
     private int FigPosY;
     private int FigPosX;
+    private char Name;
 
                     // Положение фигуры
                     //    18 28 38 48 58 68 78 88
@@ -42,8 +41,7 @@ public class Figures {
     public void setFigStat(boolean FigStat) { this.FigStat = FigStat; } // Задать статус фигуры
     public boolean getFigStat() { return FigStat; } // Получить статус фигуры
 
-    char Name = 'X';
-    public char getName() { return this.Name; }
+    public char getName() { return Name; }
     boolean Result = false;
     public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
         return Result;
@@ -59,7 +57,7 @@ class King extends Figures {
         super(FigColor, FigNum, FigPosY, FigPosX, FigChar);
     }
     char Color = getColor();
-    public char getName() { return this.Name; }
+    //public char getName() { return this.Name; }
 
     public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
         Result = takeFig.getColor() == PlayerObj.getColor();
@@ -74,7 +72,7 @@ class Queen extends Figures {
         super(FigColor, FigNum, FigPosY, FigPosX, FigChar);
     }
     char Color = getColor();
-    public char getName() { return this.Name; }
+    //public char getName() { return this.Name; }
 
     public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
         Result = takeFig.getColor() == PlayerObj.getColor();
@@ -89,7 +87,7 @@ class Rook extends Figures {
         super(FigColor, FigNum, FigPosY, FigPosX, FigChar);
     }
     char Color = getColor();
-    public char getName() { return this.Name; }
+    //public char getName() { return this.Name; }
 
     public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
         Result = takeFig.getColor() == PlayerObj.getColor();
@@ -104,7 +102,7 @@ class Knight extends Figures {
         super(FigColor, FigNum, FigPosY, FigPosX, FigChar);
     }
     char Color = getColor();
-    public char getName() { return this.Name; }
+    //public char getName() { return this.Name; }
 
     public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
         Result = takeFig.getColor() == PlayerObj.getColor();
@@ -119,7 +117,7 @@ class Bishop extends Figures {
         super(FigColor, FigNum, FigPosY, FigPosX, FigChar);
     }
     char Color = getColor();
-    public char getName() { return this.Name; }
+    //public char getName() { return this.Name; }
 
     public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
         Result = takeFig.getColor() == PlayerObj.getColor();
@@ -134,26 +132,26 @@ class Pawn extends Figures {
         super(FigColor, FigNum, FigPosY, FigPosX, FigChar);
     }
     char Color = getColor();
-    public char getName() { return this.Name; }
+    //public char getName() { return this.Name; }
 
-    public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
-        boolean Col, Xpos, StepW, StepB, Obst, FwdB;
-        int X1 = takeFig.getFigPosX();
-        int X2 = putFig.getFigPosX();
-        int Y1 = takeFig.getFigPosY();
-        int Y2 = putFig.getFigPosY();
-        int Num1 = putFig.getFigNum();
-        char C1 = takeFig.getColor();
-        char C2 = PlayerObj.getColor();
-
-        Col = C1 == C2;
-        Xpos = (X1 == X2);
-        StepW = ((C1 == 'W') & (0 < (Y1 - Y2)) & ( ( Math.abs(Y1 - Y2) < 2 ) ^ (Y1 == 7 & ((Y1 - Y2) == 2))));
-        StepB = ((C1 == 'B') & (0 > (Y1 - Y2)) & ( ( Math.abs(Y1 - Y2) < 2 ) ^ (Y1 == 2 & ((Y2 - Y1) == 2))));
-        Obst = (Num1) < 1;
-        Result = Col & Xpos & (StepW | StepB) & Obst;
-        return Result;
-    }
+//    public boolean Movement (Figures takeFig, Figures putFig, Players PlayerObj) {
+//        boolean Col, Xpos, StepW, StepB, Obst, FwdB;
+//        int X1 = takeFig.getFigPosX();
+//        int X2 = putFig.getFigPosX();
+//        int Y1 = takeFig.getFigPosY();
+//        int Y2 = putFig.getFigPosY();
+//        int Num1 = putFig.getFigNum();
+//        char C1 = takeFig.getColor();
+//        char C2 = PlayerObj.getColor();
+//
+//        Col = C1 == C2;
+//        Xpos = (X1 == X2);
+//        StepW = ((C1 == 'W') & (0 < (Y1 - Y2)) & ( ( Math.abs(Y1 - Y2) < 2 ) ^ (Y1 == 7 & ((Y1 - Y2) == 2))));
+//        StepB = ((C1 == 'B') & (0 > (Y1 - Y2)) & ( ( Math.abs(Y1 - Y2) < 2 ) ^ (Y1 == 2 & ((Y2 - Y1) == 2))));
+//        Obst = (Num1) < 1;
+//        Result = Col & Xpos & (StepW | StepB) & Obst;
+//        return Result;
+//    }
 }
 
 // Пустое поле
@@ -163,5 +161,5 @@ class Blank extends Figures {
         super(FigColor, FigNum, FigPosY, FigPosX, FigChar);
     }
     // ⛚ = 9946
-    public char getName() { return Name; }
+    //public char getName() { return Name; }
 }
