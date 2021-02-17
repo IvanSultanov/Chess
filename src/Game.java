@@ -73,7 +73,7 @@ public class Game {
         }
 
     public boolean MovAllow (Figures takeFig, Figures putFig, Players PlayerObj) {
-        boolean Result = true, Col, Xpos, StepW, StepB, Obst, FwdB;
+        boolean Result = false, Col, Xpos, StepW, StepB, Obst, FwdB;
         int X1 = takeFig.getFigPosX();
         int X2 = putFig.getFigPosX();
         int Y1 = takeFig.getFigPosY();
@@ -85,9 +85,10 @@ public class Game {
         Col = C1 == C2;
         int Y = Math.abs(Y2 - Y1);
         int X = Math.abs(X2 - X1);
-        boolean knight = takeFig.getName() == ('♞' | '♘');
-        boolean bishop = (int) takeFig.getName() == (9815 | 9821);
-        boolean Rook = takeFig.getName() == ('♜' | '♖');
+        boolean knight = (takeFig.getName() == '♞') | (takeFig.getName() == '♘');
+        boolean bishop = (takeFig.getName() == '♝') | (takeFig.getName() == '♗');
+        boolean rook = (takeFig.getName() == '♜') | (takeFig.getName() == '♖');
+        boolean pawn = (takeFig.getName() == '♟') | (takeFig.getName() == '♙');
 
         if ( Y == 0 & X == 0) return false;
         if (Y > 0 & X > 0 & Y != X & !knight) return false;
@@ -99,9 +100,20 @@ public class Game {
             else return false;
         }
 
-        if (takeFig.getName() == (9815 | 9821)) {
-            System.out.println((int) takeFig.getName());
-            System.out.println((char) 9815 + " " + (char) 9821);
+        if (pawn) {
+            int Dist = Math.max(Y, X);
+            int a = 1, b = 1;
+            if ((Y2 - Y1) == 0) a = 0;
+            if ((X2 - X1) == 0) b = 0;
+            if ((Y2 - Y1) < 0) a *= -1;
+            if ((X2 - X1) < 0) b *= -1;
+            for (int i = 1; i < Dist; i++ )
+            Sum += FigSet[Y1+i*a][X1+i*b].getFigNum();
+            Result = (Sum == 0);
+            return Result;
+        }
+
+        if (bishop) {
             if (Y == X) {
                 int Dist = Y;
                 int a = 1, b = 1;
@@ -115,18 +127,32 @@ public class Game {
                 return Result;
             } else return false;
         }
-        System.out.println(takeFig.getName());
 
-        // Проверка есть ли фигура на пути (кроме коня)
-        int Dist = Math.max(Y, X);
-        int a = 1, b = 1;
-        if ((Y2 - Y1) == 0) a = 0;
-        if ((X2 - X1) == 0) b = 0;
-        if ((Y2 - Y1) < 0) a *= -1;
-        if ((X2 - X1) < 0) b *= -1;
-        for (int i = 1; i < Dist; i++ )
-            Sum += FigSet[Y1+i*a][X1+i*b].getFigNum();
-            Result = (Sum == 0);
+        if (rook) {
+            if (Y == 0 ^ X == 0) {
+                int Dist = Math.max(Y, X);
+                int a = 1, b = 1;
+                if ((Y2 - Y1) == 0) a = 0;
+                if ((X2 - X1) == 0) b = 0;
+                if ((Y2 - Y1) < 0) a *= -1;
+                if ((X2 - X1) < 0) b *= -1;
+                for (int i = 1; i < Dist; i++)
+                    Sum += FigSet[Y1 + i * a][X1 + i * b].getFigNum();
+                Result = (Sum == 0);
+                return Result;
+            } else return false;
+        }
+
+//        // Проверка есть ли фигура на пути (кроме коня)
+//        int Dist = Math.max(Y, X);
+//        int a = 1, b = 1;
+//        if ((Y2 - Y1) == 0) a = 0;
+//        if ((X2 - X1) == 0) b = 0;
+//        if ((Y2 - Y1) < 0) a *= -1;
+//        if ((X2 - X1) < 0) b *= -1;
+//        for (int i = 1; i < Dist; i++ )
+//            Sum += FigSet[Y1+i*a][X1+i*b].getFigNum();
+//            Result = (Sum == 0);
             return Result;
     }
 }
