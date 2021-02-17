@@ -85,6 +85,8 @@ public class Game {
         Col = C1 == C2;
         int Y = Math.abs(Y2 - Y1);
         int X = Math.abs(X2 - X1);
+        boolean king = (takeFig.getName() == '♚') | (takeFig.getName() == '♔');
+        boolean queen = (takeFig.getName() == '♛') | (takeFig.getName() == '♕');
         boolean knight = (takeFig.getName() == '♞') | (takeFig.getName() == '♘');
         boolean bishop = (takeFig.getName() == '♝') | (takeFig.getName() == '♗');
         boolean rook = (takeFig.getName() == '♜') | (takeFig.getName() == '♖');
@@ -92,6 +94,36 @@ public class Game {
 
         if ( Y == 0 & X == 0) return false;
         if (Y > 0 & X > 0 & Y != X & !knight) return false;
+
+        if (king) {
+            if (Y < 2 & X < 2) {
+                int Dist = Math.max(Y, X);
+                int a = 1, b = 1;
+                if ((Y2 - Y1) == 0) a = 0;
+                if ((X2 - X1) == 0) b = 0;
+                if ((Y2 - Y1) < 0) a *= -1;
+                if ((X2 - X1) < 0) b *= -1;
+                for (int i = 1; i < Dist; i++)
+                    Sum += FigSet[Y1 + i * a][X1 + i * b].getFigNum();
+                Result = (Sum == 0);
+                return Result;
+            } else return false;
+        }
+
+        if (queen) {
+            if (Y == 0 ^ X == 0 ^ X == Y) {
+                int Dist = Math.max(Y, X);
+                int a = 1, b = 1;
+                if ((Y2 - Y1) == 0) a = 0;
+                if ((X2 - X1) == 0) b = 0;
+                if ((Y2 - Y1) < 0) a *= -1;
+                if ((X2 - X1) < 0) b *= -1;
+                for (int i = 1; i < Dist; i++)
+                    Sum += FigSet[Y1 + i * a][X1 + i * b].getFigNum();
+                Result = (Sum == 0);
+                return Result;
+            } else return false;
+        }
 
         // Проверка ходов коня
         if (knight) {
@@ -102,7 +134,7 @@ public class Game {
 
         if (bishop) {
             if (Y == X) {
-                int Dist = Y;
+                int Dist = Math.max(Y, X);
                 int a = 1, b = 1;
                 if ((Y2 - Y1) == 0) a = 0;
                 if ((X2 - X1) == 0) b = 0;
